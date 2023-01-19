@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/liseu/Desktop/CUT/build",
+  "command": "/usr/bin/gcc -g -pthread -Wall -Wextra -std=gnu99 -o CMakeFiles/CUT.dir/main.c.o -c /home/liseu/Desktop/CUT/main.c",
+  "file": "/home/liseu/Desktop/CUT/main.c"
+}
+]
