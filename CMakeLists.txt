@@ -10,9 +10,12 @@ project(CUT VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(CUT EXCLUDE_FROM_ALL main.c)
+add_executable(CUT EXCLUDE_FROM_ALL main.c sts_queue.c)
 target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Wall -Wextra)
 #target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Weverything)
+
+add_executable(signal EXCLUDE_FROM_ALL sig.c)
+target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Wall -Wextra)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
 

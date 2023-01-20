@@ -43,7 +43,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -86,7 +87,8 @@
 						25,
 						26,
 						27,
-						28
+						28,
+						29
 					]
 				}
 			],
@@ -95,7 +97,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "CUT::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-CUT-Debug-6b9dfd810af556a6df27.json",
+					"jsonFile" : "target-CUT-Debug-1f3dee4d7ca12f2b90dc.json",
 					"name" : "CUT",
 					"projectIndex" : 0
 				},
@@ -293,6 +295,13 @@
 					"id" : "NightlyUpdate::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-NightlyUpdate-Debug-1f556e19d0d507956091.json",
 					"name" : "NightlyUpdate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "signal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-signal-Debug-833b53ad7e498a6c1345.json",
+					"name" : "signal",
 					"projectIndex" : 0
 				}
 			]

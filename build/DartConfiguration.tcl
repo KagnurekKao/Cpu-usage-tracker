@@ -14,7 +14,7 @@ CostDataFile:
 Site: liseu-VirtualBox
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
-BuildName: Linux-g++
+BuildName: Linux-clang++
 
 # Subprojects
 LabelsForSubprojects: 
@@ -44,7 +44,7 @@ SVNOptions:
 SVNUpdateOptions: 
 
 # Git options
-GITCommand: 
+GITCommand: /usr/bin/git
 GITInitSubmodules: 
 GITUpdateOptions: 
 GITUpdateCustom: 
@@ -57,13 +57,13 @@ P4UpdateOptions:
 P4UpdateCustom: 
 
 # Generic update command
-UpdateCommand: 
+UpdateCommand: /usr/bin/git
 UpdateOptions: 
-UpdateType: 
+UpdateType: git
 
 # Compiler info
-Compiler: /usr/bin/g++
-CompilerVersion: 11.3.0
+Compiler: /usr/bin/clang++
+CompilerVersion: 14.0.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
