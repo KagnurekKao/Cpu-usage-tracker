@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <semaphore.h>
 #include "sts_queue/sts_queue.h"
+#include "sts_queue/sts_queue.c"
 
 
 //semaphores
@@ -22,6 +23,9 @@ sem_t semFull;
 //mutexes
 pthread_mutex_t mutexBuffer;
 
+//CPU usage math
+long double a[8],p[8];
+long double PrevIdle, Idle, PrevNonIdle, NonIdle, PrevTotal, Total, totald, idled, CPU_Percentage;
 
 //threads
 int TemporaryFile[3]; //removce later
@@ -123,59 +127,57 @@ int main(int argc, char* argv[]){
 
 //Reading Thread
 void* reading(void*arg){
-    while(1){
-        //printf("Code for Reading Thread:\n");
-        int r1 = rand()%10;
-        int r2 = rand()%10;
-        int r3 = rand()%10;
-        
+    
+    FILE *fp;
+
+    while(1)
+    {
+        fp = fopen("/proc/stat", "r");
         sem_wait(&semFull);
         pthread_mutex_lock(&mutexBuffer);
-        TemporaryFile[1] = r1;
-        TemporaryFile[2] = r2;
-        TemporaryFile[3] = r3;
+        fscanf(fp,"%*s %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf ", &p[0], &p[1], &p[2], &p[3], &p[4], &p[5], &p[6], &p[7]);
+        fclose(fp);
+        //sleep(1);
+        
+        sleep(1);;
+        fp = fopen("/proc/stat", "r");
+        fscanf(fp,"%*s %Lf %Lf %Lf %Lf %Lf %Lf %Lf %Lf ", &a[0], &a[1], &a[2], &a[3], &a[4], &a[5], &a[6], &a[7]);
+        fclose(fp);
         pthread_mutex_unlock(&mutexBuffer);
         sem_post(&semEmpty);
+        
 
-        printf("Reader: %d %d %d  | %d \n", r1, r2, r3, (r1+r2+r3)/3);
-        usleep(100000);
+        
     }
 }
 
 //Analising Thread
 void* analising(void*arg){
     while(1){
-        //printf("Code for Analising Thread:\n");
         sem_wait(&semFull);
         pthread_mutex_lock(&mutexBuffer);
-        int a = (TemporaryFile[1]+TemporaryFile[2]+TemporaryFile[3])/3;
-        TemporaryData = a;
+        PrevIdle = p[3]+p[4];
+        Idle = a[3]+a[4];
+        PrevNonIdle = a[0]+a[1]+a[2]+a[5]+a[6]+a[7];
+        NonIdle = p[0]+p[1]+p[2]+p[5]+p[6]+p[7];
+        PrevTotal = PrevIdle + PrevNonIdle;
+        Total = Idle + NonIdle;
+        totald = Total-PrevTotal;
+        idled = Idle - PrevIdle;
+        CPU_Percentage = ((totald-idled)/totald)*100;
         pthread_mutex_unlock(&mutexBuffer);
         sem_post(&semEmpty);
-
-        printf("Analyzer: %d\n",a);
-        usleep(100000);
-        
-       /* sem_wait(&semFull);
-        pthread_mutex_lock(&mutexBuffer);
-        
-        pthread_mutex_unlock(&mutexBuffer);
-        sem_post(&semEmpty); */
     }
 }
 
 //Printing Thread
 void* printing(void*arg){
     while(1){
-        //printf("Code for Printing Thread:\n");
         sem_wait(&semEmpty);
         pthread_mutex_lock(&mutexBuffer);
-        int p = TemporaryData;
+        printf("CPU_percentage: %Lf\n",CPU_Percentage);
         pthread_mutex_unlock(&mutexBuffer);
-        sem_post(&semFull);
-
-        printf("Print: %d\n",p);  
-        usleep(100000);
+        sem_post(&semFull); 
     }
 }
 

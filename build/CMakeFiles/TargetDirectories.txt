@@ -27,7 +27,6 @@
 /home/liseu/Desktop/CUT/build/CMakeFiles/ContinuousMemCheck.dir
 /home/liseu/Desktop/CUT/build/CMakeFiles/ContinuousSubmit.dir
 /home/liseu/Desktop/CUT/build/CMakeFiles/CUT.dir
-/home/liseu/Desktop/CUT/build/CMakeFiles/signal.dir
 /home/liseu/Desktop/CUT/build/CMakeFiles/package.dir
 /home/liseu/Desktop/CUT/build/CMakeFiles/package_source.dir
 /home/liseu/Desktop/CUT/build/CMakeFiles/test.dir
