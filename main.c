@@ -12,7 +12,6 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <semaphore.h>
-#include "sts_queue/sts_queue.h"
 
 //sigterm
 volatile sig_atomic_t done=0;

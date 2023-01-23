@@ -10,10 +10,9 @@ project(CUT VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(CUT EXCLUDE_FROM_ALL main.c sts_queue.c)
+add_executable(CUT EXCLUDE_FROM_ALL main.c)
 target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Wall -Wextra)
 #target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Weverything)
-
 
 target_compile_options(${PROJECT_NAME} PRIVATE -pthread -Wall -Wextra)
 
